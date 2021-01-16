@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Form from "./components/Form";
+import UserInformation from "./components/UserInformation";
+import Footer from "./components/Footer";
+
+const App = () => {
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [createAccount, setCreateAccount] = useState(1);
+
+    return (
+        <>
+            <div className="app-container">
+                {createAccount === 1 ? (
+                    <Form
+                        username={username}
+                        setUsername={setUsername}
+                        email={email}
+                        setEmail={setEmail}
+                        password={password}
+                        setPassword={setPassword}
+                        passwordConfirm={passwordConfirm}
+                        setPasswordConfirm={setPasswordConfirm}
+                        setCreateAccount={setCreateAccount}
+                    />
+                ) : (
+                    <UserInformation
+                        username={username}
+                        email={email}
+                        password={password}
+                        setCreateAccount={setCreateAccount}
+                    />
+                )}
+                <Footer />
+            </div>
+        </>
+    );
+};
 
 export default App;
